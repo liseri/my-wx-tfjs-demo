@@ -1,0 +1,46 @@
+{
+  "name": "weapp-vite-tailwindcss-tdesign-template",
+  "type": "module",
+  "version": "1.0.3",
+  "private": true,
+  "description": "原生微信小程序 weapp-vite + tailwindcss + tdesign 模板",
+  "author": "liseri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weapp-vite/weapp-vite.git",
+    "directory": "templates/weapp-vite-tailwindcss-tdesign-template"
+  },
+  "bugs": {
+    "url": "https://github.com/weapp-vite/weapp-vite/issues"
+  },
+  "keywords": [],
+  "scripts": {
+    "dev": "weapp-vite dev",
+    "dev:open": "weapp-vite dev -o",
+    "build": "weapp-vite build",
+    "open": "weapp-vite open",
+    "g": "weapp-vite generate",
+    "postinstall": "weapp-tw patch"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+    "@tensorflow/tfjs-converter": "^4.22.0",
+    "@tensorflow/tfjs-core": "^4.22.0",
+    "abab": "^2.0.6",
+    "text-encoder": "^0.0.4"
+  },
+  "devDependencies": {
+    "@egoist/tailwindcss-icons": "^1.9.0",
+    "@iconify-json/mdi": "^1.2.3",
+    "autoprefixer": "^10.4.23",
+    "miniprogram-api-typings": "^4.1.2",
+    "patch-package": "^8.0.1",
+    "postcss": "^8.5.6",
+    "sass": "^1.97.0",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "weapp-tailwindcss": "^4.9.1",
+    "weapp-vite": "5.12.0"
+  }
+}

@@ -1,0 +1,22 @@
+<!--pages/ai/index/index.wxml-->
+<scroll-view scroll-y class="min-h-screen bg-gray-50">
+  <image src='https://ai.flypot.cn/mp/ai-pocket/images/basic-bg.png' mode='widthFix' class='w-full h-[486rpx]'></image>
+  
+  <!-- 2列功能导航框 -->
+  <view class="grid grid-cols-2 gap-4 p-4">
+    <navigator open-type="navigate" hover-class="opacity-90" url="/pages/ai/{{item.page}}/index" 
+               class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center" 
+               wx:for="{{elements}}" wx:for-index="idx" wx:key="idx">
+      <!-- 使用动态背景色 -->
+      <view class="w-16 h-16 rounded-full flex items-center justify-center mb-3" 
+            style="background-color: {{item.color || '#3b82f6'}};">
+        <text class="text-white text-2xl">{{item.icon || '📱'}}</text>
+      </view>
+      
+      <view class="text-lg font-semibold text-gray-800 mb-1">{{item.title}}</view>
+      <view class="text-sm text-gray-500 text-center">{{item.name}}</view>
+    </navigator>
+  </view>
+  
+  <view class="h-20"></view>
+</scroll-view>

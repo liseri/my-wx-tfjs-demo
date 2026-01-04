@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="container">
+  <text class="title">器械清点</text>
+  
+  <view class="section">
+    <text class="section-title">摄像头检测</text>
+    <view class="camera-container">
+      <camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 500rpx;"></camera>
+      <button type="primary" bindtap="takePhoto">拍照检测</button>
+    </view>
+  </view>
+  
+  <view class="section">
+    <text class="section-title">图片检测</text>
+    <button type="primary" bindtap="chooseImage">选择图片</button>
+  </view>
+  
+  <view class="section" wx:if="{{imagePath}}">
+    <text class="section-title">检测结果</text>
+    <view class="detection-container">
+      <image src="{{imagePath}}" mode="widthFix" class="detection-image" id="detectionImage"></image>
+      <view class="highlighter" 
+            wx:for="{{detections}}" 
+            wx:key="index"
+            style="left: {{item.left}}px; top: {{item.top}}px; width: {{item.width}}px; height: {{item.height}}px;"></view>
+      <view class="info" 
+            wx:for="{{detections}}" 
+            wx:key="index"
+            style="left: {{item.left}}px; top: {{item.top}}px; width: {{item.width}}px;">
+        {{item.label}} - {{item.score}}%
+      </view>
+    </view>
+    
+    <!-- 检测统计信息 -->
+    <view class="stats-section" wx:if="{{detectionStats.length > 0}}">
+      <text class="stats-title">统计信息</text>
+      <view class="stats-list">
+        <view class="stats-item" wx:for="{{detectionStats}}" wx:key="index">
+          <view class="stats-label">{{item.label}}</view>
+          <view class="stats-info">
+            <span class="stats-count">{{item.count}}个</span>
+            <span class="stats-score">{{item.avgScore}}%</span>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
