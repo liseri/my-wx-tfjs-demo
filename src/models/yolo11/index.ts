@@ -30,7 +30,7 @@ export const detect = async (frame: any) => {
   console.log('准备检测，直接使用原始frame');
   
   // 使用更低的阈值，并添加最大检测数量参数
-  const detectedObjects = await model.detect(frame, 10, 0.3);
+  const detectedObjects = await model.detect(frame, 100, 0.3);
   
   console.log('检测结果:', detectedObjects.length, '个目标，详细:', detectedObjects);
   
