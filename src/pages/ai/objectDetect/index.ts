@@ -1,5 +1,8 @@
 // index.js
-import * as model from '@/models/yolo11';
+import { ObjectDetection } from '@/models/yolo11/model';
+
+const { appWidth, appHeight, benchmarkLevel } = getApp().globalData
+
 interface Detection {
     label: string;
     score: number;
@@ -15,7 +18,9 @@ interface ImageInfo {
 }
 
 Page({
+    objectDetection: ObjectDetection,
     data: {
+        objectDetection: null,
         imagePath: '',
         detections: [] as Detection[],
         devicePosition: 'back',
@@ -34,7 +39,21 @@ Page({
             })
             return
         }
-        this.initTfjs()
+        // this.initTfjs()
+    },
+
+    onReady() {
+      this.initClassifier()
+    },
+
+    initClassifier() {
+      wx.showLoading({ title: '模型正在加载...' })
+      this.objectDetection = new ObjectDetection({ width: appWidth, height: appHeight })
+      this.objectDetection.load().then(() => {
+        wx.hideLoading()
+      }).catch(err => {
+        console.log('模型加载报错：', err)
+      })
     },
 
     async initTfjs() {
@@ -168,13 +187,14 @@ Page({
                             img.src = imagePath
                         })
                         
-                        if (!model.isReady()) {
-                             console.log("模型没有正确加载");   
+                        if (!this.objectDetection.isReady()) {
+                             console.log("模型没有正确加载"); 
+                             return;  
                         }
                         
                         // 调用model.detect，直接传递显示尺寸
-                        const detectedObjects = await model.detect(canvas);
-                            
+                        const detectedObjects = await this.objectDetection.detect(canvas);
+                        
                         console.log('检测结果:', detectedObjects);
 
                         // 处理检测结果

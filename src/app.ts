@@ -1,6 +1,3 @@
-import { setupWechatPlatform } from '@/plugins/wechat_platform';
-import { fetchFunc } from '@/plugins/fetch';
-
 App({
     globalData: {},
     onLaunch() {
@@ -16,10 +13,5 @@ App({
                 console.log("登录信息  res=", _res)
             }
         })
-
-        setupWechatPlatform({
-            fetchFunc: fetchFunc,
-            canvas: wx.createOffscreenCanvas(0, 0)
-        }, true);
     },
 })
