@@ -1,1 +1,1 @@
-本项目是一个微信小程序项目，使用 TensorFlow.js 进行模型推理。
+本项目是一个微信小程序miniprogram项目
